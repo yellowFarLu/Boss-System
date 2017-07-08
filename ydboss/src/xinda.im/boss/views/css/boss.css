@@ -1,0 +1,35 @@
+html,body {height:100%;font-size:12px;}
+th {height:100%;font-size:12px;}
+
+
+.btn {  
+    color: blue;      
+    background-color: #FFFFFF;  
+    border: 0px none; 
+     /*去边框  */
+    font-family: "宋体";  
+    font-size: 10px;  
+    text-decoration:underline;  
+    /*加下划线  */
+}  
+
+.btn:link{  
+    color:blue;  
+    border: none;  
+    cursor: hand;  
+    cursor: pointer;  
+    text-decoration:underline;  
+    /*//加下划线  */
+}  
+.btn:focus {
+    color:rebeccapurple;
+    outline: none;
+}
+
+
+.btn:hover {
+    outline: none;
+    cursor:pointer;    
+    /*//去边框  */
+}
+

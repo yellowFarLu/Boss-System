@@ -1,0 +1,12 @@
+syntax: glob
+bin/**
+pkg/**
+.cache/**
+*.exe
+debug
+.git
+*.exe~
+*.bak
+*.orig
+*.log
+boss_backup.sql

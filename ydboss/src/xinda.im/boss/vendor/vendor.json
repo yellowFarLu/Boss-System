@@ -1,0 +1,77 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"path": "code.google.com/p/mahonia",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "hBKw44bNYnsk9B9rs7C8Y4b3i+I=",
+			"path": "github.com/astaxie/beego",
+			"revision": "323a1c4214101331a4b71922c23d19b7409ac71f",
+			"revisionTime": "2017-03-06T13:59:04Z"
+		},
+		{
+			"checksumSHA1": "s8iEWXUIYYvTpRRGtAFtR2XzMJ4=",
+			"path": "github.com/astaxie/beego/config",
+			"revision": "323a1c4214101331a4b71922c23d19b7409ac71f",
+			"revisionTime": "2017-03-06T13:59:04Z"
+		},
+		{
+			"checksumSHA1": "ix0B5N1OB2lt9/DbOgEjdqMxVj4=",
+			"path": "github.com/astaxie/beego/context",
+			"revision": "323a1c4214101331a4b71922c23d19b7409ac71f",
+			"revisionTime": "2017-03-06T13:59:04Z"
+		},
+		{
+			"checksumSHA1": "uj7zJPIDE1wPGMzlUuPZPx6onFQ=",
+			"path": "github.com/astaxie/beego/grace",
+			"revision": "323a1c4214101331a4b71922c23d19b7409ac71f",
+			"revisionTime": "2017-03-06T13:59:04Z"
+		},
+		{
+			"checksumSHA1": "PYWtWfGkUtNRodYWFmBFPcyJQ5I=",
+			"path": "github.com/astaxie/beego/logs",
+			"revision": "323a1c4214101331a4b71922c23d19b7409ac71f",
+			"revisionTime": "2017-03-06T13:59:04Z"
+		},
+		{
+			"checksumSHA1": "8lykewinegySOlOMlX3KbpsfDOs=",
+			"path": "github.com/astaxie/beego/session",
+			"revision": "323a1c4214101331a4b71922c23d19b7409ac71f",
+			"revisionTime": "2017-03-06T13:59:04Z"
+		},
+		{
+			"checksumSHA1": "8svZHO5r8cwV5OrFW2hMmMuvYk4=",
+			"path": "github.com/astaxie/beego/toolbox",
+			"revision": "323a1c4214101331a4b71922c23d19b7409ac71f",
+			"revisionTime": "2017-03-06T13:59:04Z"
+		},
+		{
+			"checksumSHA1": "jDJgk4tq1eBCWGE2ekKpRxpzRpg=",
+			"path": "github.com/astaxie/beego/utils",
+			"revision": "323a1c4214101331a4b71922c23d19b7409ac71f",
+			"revisionTime": "2017-03-06T13:59:04Z"
+		},
+		{
+			"checksumSHA1": "I0JxZTlCQ9zFrR+oPq5pS3JTzmw=",
+			"path": "github.com/djimenez/iconv-go",
+			"revision": "8960e66bd3dacbc8773962b40eb82fc18c63c127",
+			"revisionTime": "2016-03-05T22:51:43Z"
+		},
+		{
+			"checksumSHA1": "6X3O3mfvOyiwV2iAb5GjxARs08c=",
+			"path": "github.com/garyburd/redigo/internal",
+			"revision": "ac91d6ff49bd0d278a90201de77a4f8ad9628e25",
+			"revisionTime": "2017-04-26T21:28:18Z"
+		},
+		{
+			"checksumSHA1": "smDT2Ucvaw9x1IiURmIBF0v9PQw=",
+			"path": "github.com/garyburd/redigo/redis",
+			"revision": "ac91d6ff49bd0d278a90201de77a4f8ad9628e25",
+			"revisionTime": "2017-04-26T21:28:18Z"
+		}
+	],
+	"rootPath": "xinda.im/boss"
+}

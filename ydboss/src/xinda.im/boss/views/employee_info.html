@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>BOSS系统</title>
+
+    {{template "tpl_css.html"}}
+
+</head>
+
+<body class="sticky-header" id="sale_tem">
+
+    <section>
+        <!-- left side start-->
+        {{template "tpl_menu.html" .}}
+        <!-- left side end-->
+
+        <!-- main content start-->
+        <div class="main-content">
+
+            <!-- header section start-->
+            {{template "tpl_head.html" .user}}
+            <!-- header section end-->
+            
+            <!--body wrapper start-->
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <section class="panel">
+                            <header class="panel-heading">客户操作流水</header>
+                            <div class="panel-body">
+                            <ul class="goal-progress" id="customCommentBox">
+                            <li class="text-center"><img src="../images/input-spinner.gif" alt="" width="14"></li>
+                            </ul>
+                            <div class="text-center"><a href="javascript:;" id="cLookMore">查看更多</a></div>
+                        </div>
+                        </section>
+                    </div>
+                    <div class="col-sm-6">
+                        <section class="panel">
+                            <header class="panel-heading">商机操作流水</header>
+                            <div class="panel-body">
+                            <ul class="goal-progress" id="opportCommentBox">
+                            <li class="text-center"><img src="../images/input-spinner.gif" alt="" width="14"></li>
+                            </ul>
+                            <div class="text-center"><a href="javascript:;" id="oLookMore">查看更多</a></div>
+                        </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <!--body wrapper end-->
+
+            {{template "tpl_footer.html"}}
+
+        </div>
+        <!-- main content end-->
+    </section>
+    
+    <script id="TplComment" type="text/template">
+    <%if(list.length == 0){%>
+    <li class="text-center">暂无数据</li>
+    <%}else{%>
+    <%for(var i=0;i<list.length;i++){%>
+    <li>
+        <p>名称:<a href="/get_agent_customer_detail.html?id=<%=list[i].customer_id%>"><%=list[i].name%></a><span class="pull-right"><%=list[i].timex%></span></p>
+        <%=list[i].comments%>
+    </li>
+    <%}%>
+    <%}%>
+    </script>    
+    
+
+    {{template "tpl_js.html"}}
+
+    <script src="js/lodash.min.js"></script>
+    <script src="js/myself/global.js"></script>
+
+    <script src="js/myself/employee_info.js"></script>
+
+</body>
+
+</html>

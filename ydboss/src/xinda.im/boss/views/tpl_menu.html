@@ -1,0 +1,63 @@
+<div class="left-side sticky-left-side">
+
+    <!--logo and iconic logo start-->
+    <div class="logo">
+        <a href="javascript:;"><img src="images/logo.png" alt=""></a>
+    </div>
+
+    <div class="logo-icon text-center">
+        <a href="javascript:;"><img src="images/logo_icon.png" alt=""></a>
+    </div>
+    <!--logo and iconic logo end-->
+
+    <div class="left-side-inner">
+
+        <!-- visible to small devices only -->
+        <div class="visible-xs hidden-sm hidden-md hidden-lg">
+            <div class="media logged-user">
+                <img alt="" src="images/photos/user-avatar.png" class="media-object">
+                <div class="media-body">
+                    <h4><a href="#">{{.user.Name}}</a></h4>
+                    <span>"biu biu biu..."</span>
+                </div>
+            </div>
+
+            <h5 class="left-nav-title">账号信息</h5>
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li><a href="/loginOut"><i class="fa fa-sign-out"></i> <span>退出登录</span></a></li>
+            </ul>
+        </div>
+
+        <!--sidebar nav start-->
+        <ul class="nav nav-pills nav-stacked custom-nav">
+            <!--                <li class="active"><a href="index.html"><i class="fa fa-home"></i> <span>渠道管理</span></a></li>-->
+            {{if eq .user.RoleId 0}}
+            <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>超级管理员</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="agent.html"> 渠道维护</a></li>
+                    <li><a href="all_customer.html"> 客户维护</a></li>
+                </ul>
+            </li>
+            {{end}}
+            {{if lt .user.RoleId 2}}
+            <li class="menu-list"><a href=""><i class="fa fa-sitemap"></i> <span>渠道管理</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="agent_employee.html"> 账号管理</a></li>
+                    <li><a href="agent_customer.html"> 客户分配</a></li>
+                    <li><a href="agent_biz.html"> 商机汇总</a></li>
+                </ul>
+            </li>
+            {{end}}
+            <li class="menu-list"><a href=""><i class="fa fa-user"></i> <span>客户管理</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="sale_customer.html"> 客户列表</a></li>
+                    <li><a href="opportunities.html"> 商机列表</a></li>
+                </ul>
+            </li>
+
+
+        </ul>
+        <!--sidebar nav end-->
+
+    </div>
+</div>

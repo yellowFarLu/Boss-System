@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>BOSS系统</title>
+
+    {{template "tpl_css.html"}}
+
+</head>
+
+<body class="sticky-header" id="sale_tem">
+
+    <section>
+        <!-- left side start-->
+        {{template "tpl_menu.html" .}}
+        <!-- left side end-->
+
+        <!-- main content start-->
+        <div class="main-content">
+
+            <!-- header section start-->
+            {{template "tpl_head.html" .user}}
+            <!-- header section end-->
+
+            <!-- page heading start-->
+            <!--<div class="page-heading">
+                <h3>
+                详细信息
+                <small>超级管理员</small>
+            </h3>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">客户维护</a>
+                    </li>
+                    <li class="active">详细信息 </li>
+                </ul>
+
+            </div>-->
+            <!-- page heading end-->
+<!--            <hr>-->
+            <!--body wrapper start-->
+            <div class="wrapper">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <section class="panel">
+                            <header class="panel-heading">基本信息</header>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-success" data-toggle="modal" type="button" id="returnBtn" onclick="history.go(-1)">返回</button>
+                                        <button class="btn btn-success" data-toggle="modal" type="button" id="editBtn" onclick="EditClick()">编辑</button>
+                                        <button class="btn btn-success" data-toggle="modal" type="button" id="saveBtn" onclick="SaveClick()" disabled=true>保存</button>
+                                        <button class="btn btn-primary pull-right tooltips" type="button" data-toggle="tooltip" id="addOpportNow" data-trigger="hover" data-original-title="将该客户转化为商机">转化为商机</button>
+                                    </div>
+                                </div>
+                                <hr class="dashed">
+                                <div class="">
+                                    <form action="" class="form-horizontal" id="updateCustomerForm">
+                                        <input type="text" id="customer_id" value="{{.customer.CustomerId}}" hidden=true/>
+                                        <div class="row">
+                                            <div class="col-md-5 col-md-offset-1">
+                                               <div class="form-group">
+                                                    <label class="control-label col-md-4">总机号：</label>
+                                                    <div class="col-sm-8">
+                                                        <input maxlength="8" disabled=true id="Buin" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="总机号" value="{{.customer.RTXNum}}">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">客户名称：</label>
+                                                    <div class="col-sm-8">
+                                                        <input disabled=true data-reg="noNull" id="EntName" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="客户名称" value="{{.customer.EntName}}">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">联系人：</label>
+                                                    <div class="col-sm-8">
+                                                        <input disabled=true id="Contacts" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="联系人" value="{{.customer.Contacts}}">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">邮箱：</label>
+                                                    <div class="col-sm-8">
+                                                        <input disabled=true data-reg="email" id="ContactsMail" type="email" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="邮箱" value="{{.customer.Mail}}">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">手机号码：</label>
+                                                    <div class="col-sm-8">
+                                                        <input disabled=true data-reg="Phone" id="ContactsPhone" type="number" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="手机号码" value="{{.customer.Mobile}}">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">座机：</label>
+                                                    <div class="col-sm-8">
+                                                        <input disabled=true id="Mobile" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="座机" value="{{.customer.RTXNum}}">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">QQ：</label>
+                                                    <div class="col-sm-8">
+                                                        <input disabled=true id="QQ" type="number" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="QQ号码" value="{{.customer.QQ}}">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">省份：</label>
+                                                    <div class="col-sm-8">
+                                                        <fieldset>
+                                                            <select disabled=true class="form-control m-bot15" name="P2" id="Province">
+                                                                <option value="">请选择省份</option>
+                                                            </select>
+                                                            <select disabled=true class="form-control" name="C2" id="City">
+                                                                <option value="">请选择城市</option>
+                                                            </select>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">备注：</label>
+                                                    <div class="col-sm-8">
+                                                        <input disabled=true id="Remarks" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="备注" value="{{.customer.Note}}">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">最后跟踪时间</label>
+                                                    <div class="col-sm-8">
+                                                        <input disabled=true id="Follow_time" class="default-date-picker form-control" size="16" type="text" data-date-format="yyyy-mm-dd" value="{{.customer.LastFollowTime}}">
+                                                        <span class="help-block"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">标签：</label>
+                                                    <div class="col-sm-8">
+                                                        <div id="_updateTags"></div>
+                                                        <div id="_tagAll" onselectstart="return false" class="hide">
+                                                            <button class="btn btn-success tagAddBtn" type="button"><i class="fa fa-plus"></i> 添加标签</button>
+                                                            <div class="col-sm-12 tagBox tagsinput"><i class="closeTagBox"></i></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <hr class="dashed">
+                                <div class="">
+                                    <form action="" class="form-horizontal" id="updateActiveForm">
+                                        <div class="row">
+
+                                            <div class="col-md-5 col-md-offset-1">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">有度账号活跃数：</label>
+                                                    <div class="col-sm-8">
+                                                        <input readonly id="Active" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="座机" value="{{.customer.RTXNum}}">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">昨日总活跃数：</label>
+                                                    <div class="col-sm-8">
+                                                        <input readonly  id="Total" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="座机" value="{{.customer.RTXNum}}">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">iOS活跃数：</label>
+                                                    <div class="col-sm-8">
+                                                        <input readonly id="IOS" type="number" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="QQ号码" value="{{.customer.QQ}}">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">Android活跃数：</label>
+                                                    <div class="col-sm-8">
+                                                        <input readonly id="Android" type="number" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="QQ号码" value="{{.customer.QQ}}">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">PC活跃数：</label>
+                                                    <div class="col-sm-8">
+                                                        <input readonly id="Pc" type="number" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="QQ号码" value="{{.customer.QQ}}">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                                <hr class="dashed">
+                                    <textarea id="comment_area" class="form-control" rows="3" cols="" placeholder="添加备注信息" style="resize:none"></textarea>
+                                    <p></p>
+                                    <button class="btn btn-primary addCommentBtn" data-toggle="modal" type="button" onclick="addCommentBtnHtml()">添加备注</button>
+
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="timeline">
+                            <article class="timeline-item alt">
+                                <div class="text-right beforeCenter">
+                                    <div class="time-show first">
+                                        <a href="javascript:;" class="btn btn-primary recordBtn">点击只查看备注记录</a>
+                                    </div>
+                                </div>
+                            </article>
+                            <div id="CommentListBox"></div>
+                            <article class="timeline-item alt">
+                                <div class="text-right beforeCenter">
+                                    <div class="time-show last">
+                                        <a href="javascript:;" class="btn btn-primary lookMore">点击查看更多</a>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--body wrapper end-->
+
+            {{template "tpl_footer.html"}}
+
+        </div>
+        <!-- main content end-->
+    </section>
+    
+    <!-- AddOpportModal -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalAddOpport" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 class="modal-title">转化商机</h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                    <form action="" class="form-horizontal" id="addOpportForm">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">标题：</label>
+                            <div class="col-sm-6">
+                                <input data-reg="noNull" id="OpportTitle" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" 
+                                placeholder="" data-original-title="标题">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">内容：</label>
+                            <div class="col-sm-6">
+                                <textarea id="Content" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" 
+                                data-original-title="内容" rows="5" style="resize:none"></textarea>
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">状态：</label>
+                            <div class="col-sm-6">
+                                <select name="" id="Stage" class="form-control">
+                                    <option value="0">初步交流（10%）</option>
+                                    <option value="1">需求沟通（30%）</option>
+                                    <option value="2">商务沟通（50%）</option>
+                                    <option value="3">签约交款（100%）</option>
+                                    <option value="4">商务失败（0%）</option>
+                                </select>
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label class="control-label col-md-4">销售额(单位为万)：</label>
+                            <div class="col-sm-6">
+                                <input id="Quota" type="number" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="销售额(单位为万)">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">预计签约时间(不能修改)：</label>
+                            <div class="col-sm-6">
+                                <input data-reg="noNull" id="estimate_time" type="text" class="form-control tooltips default-date-picker" data-trigger="hover" data-toggle="tooltip" title="" placeholder="预计时间设置后无法修改" data-original-title="预计签约时间">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">真实签约时间：</label>
+                            <div class="col-sm-6">
+                                <input id="real_time" type="text" class="form-control tooltips default-date-picker" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="真实签约时间">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                           <div class="col-sm-6 col-sm-offset-4" id="_addTags"></div>
+                            <div class="col-sm-6 col-sm-offset-4" id="tagAll" onselectstart="return false">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success" id="addOpportBtn">转化商机</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script type="text/template" id="TplCommentlist">
+        <%if(Comments.length==0){%>
+            <article class="timeline-item comments">
+                <div class="timeline-desk">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <span class="arrow-alt"></span>
+                            <span class="timeline-icon"></span>
+                            <p class="font-12 text-center">暂无更多记录 </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        <%}else{%>
+            <%for(var i =0;i<Comments.length;i++){%>
+                <article class="timeline-item comments">
+                    <div class="timeline-desk">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="comment_id hide"><%=Comments[i].comment_id%></div>
+                                <h1 class="red"><%=Comments[i].timex%></h1>
+                                <%if(Comments[i].type==0){%><button class="btn btn-default btn-sm updateCommentBtn">修改备注</button><button class="btn btn-default btn-sm saveCommentBtn">保存</button>
+                                <textarea readonly type="text" class="form-control content"  rows="4" style="resize:none" value=""><%=Comments[i].text%></textarea>
+                                <%}else{%>
+                                <p class="font-12"><b><%=Comments[i].comments.action%></b></br><%=Comments[i].text%> </p><%}%>
+                                <p class="userGo"><a href="javascript:;"><i class="fa fa-user"></i> <%=Comments[i].committer%></a></p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            <%}%>
+        <%}%>
+    </script>
+        
+    <script type="text/template" id="TplProvinceList">
+    <option value="">请选择省份</option>
+    <%for(var i =0;i<list.length;i++){%>
+    <option value="<%=list[i].province_id%>"><%=list[i].province_name%></option>
+    <%}%>
+    </script>
+    
+    <script type="text/template" id="TplCityList">
+    <option value="">请选择城市</option>
+    <%for(var i =0;i<list.length;i++){%>
+    <option value="<%=list[i].city_id%>"><%=list[i].city_name%></option>
+    <%}%>
+    </script>
+    
+    <script type="text/template" id="TplTagList">
+    <%for(var i =0;i<Tags.length;i++){%>
+    <span data-id="<%=Tags[i].tag_id%>" class="label label-info"><%=Tags[i].Name%></span>
+    <%}%>
+    </script>
+
+    {{template "tpl_js.html"}}
+
+    <script src="js/lodash.min.js"></script>
+    <script src="js/myself/global.js"></script>
+
+    <script src="js/myself/sale_customer_info.js?_=2017.05.09"></script>
+
+    <script>
+        function addCommentBtnHtml() {
+            addCommentBtn()
+        }
+
+        function EditClick() {
+            EditOnClick()
+        }
+
+        function SaveClick() {
+            SaveOnClick()
+        }
+
+        function EditOnClick() {
+        $('#editBtn').attr("disabled", true)
+        $('#saveBtn').attr("disabled", false)
+
+        $('#EntName').attr("disabled", false)
+        $('#Buin').attr("disabled", false)
+        $('#Contacts').attr("disabled", false)
+        $('#ContactsPhone').attr("disabled", false)
+        $('#Mobile').attr("disabled", false)
+        $('#ContactsMail').attr("disabled", false)
+        $('#QQ').attr("disabled", false)
+        $('#Province').attr("disabled", false)
+        $('#City').attr("disabled", false)
+        $('#Remarks').attr("disabled", false)
+        
+        $('#_tagAll').removeClass('hide');
+    }
+    </script>
+
+
+</body>
+
+</html>

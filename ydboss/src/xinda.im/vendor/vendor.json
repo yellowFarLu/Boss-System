@@ -1,0 +1,12 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"path": "google.golang.org/grpc",
+			"revision": "",
+			"version": "v1.0.3"
+		}
+	],
+	"rootPath": "xinda.im"
+}

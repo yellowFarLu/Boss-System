@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>BOSS系统</title>
+
+    {{template "tpl_css.html"}}
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+    <section>
+        <!-- left side start-->
+        {{template "tpl_menu.html" .}}
+        <!-- left side end-->
+
+        <!-- main content start-->
+        <div class="main-content">
+
+            <!-- header section start-->
+            {{template "tpl_head.html" .user}}
+            <!-- header section end-->
+
+            <!--body wrapper start-->
+            <div class="wrapper">
+                <div class="row">
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <section class="panel">
+                            <header class="panel-heading">销售人员列表</header>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <button class="btn btn-success" type="button" data-toggle="modal" id="addAccountNow">新增账号</button>
+                                        <button class="btn btn-success" data-toggle="modal" id="delAccountNow">禁用账号</button>
+                                    </div>
+                                    <div class="col-sm-3 searchLine">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="keyWord" placeholder="账号名称">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default search-btn"id="searchAccountBtn"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="dashed">
+                               <div class="table-responsive">
+                                    <table class="table table-hover table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th width="35">#</th>
+                                                <th width="200">账号</th>
+                                                <th>姓名</th>
+                                                <th>性别</th>
+                                                <th>联系电话</th>
+                                                <th class="orderByBtn on" width="140" data-key="timex">
+                                                    <span>创建时间</span>
+                                                    <span class="upBox pull-right">
+                                                        <i class="fa fa-caret-up"></i>
+                                                        <i class="fa fa-caret-down on"></i>
+                                                    </span>
+                                                </th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="AccountListBox">
+                                        {{template "tpl_noData.html"}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="page_info" id="Account_page"></div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <!--body wrapper end-->
+
+            {{template "tpl_footer.html"}}
+
+
+        </div>
+        <!-- main content end-->
+    </section>
+
+    <!-- AddAccountModal -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalAddAccount" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 class="modal-title">新增账号</h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                    <form action="" class="form-horizontal" id="addAccountForm">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">邮箱账号：</label>
+                            <div class="col-md-6">
+                                <input data-reg="noNull,email" id="UserName" type="text" autocomplete="off" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="账号名(建议英文)">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">姓名：</label>
+                            <div class="col-md-6">
+                                <input data-reg="noNull" id="Name" type="text" autocomplete="off" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="姓名">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">密码：</label>
+                            <div class="col-md-6">
+                                <input data-reg="noNull" id="Password" type="password" autocomplete="off" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="密码">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">性别：</label>
+                            <div class="col-md-6">
+                                <select name="" id="Sex" class="form-control">
+                                    <option value="0">男</option>
+                                    <option value="1">女</option>
+                                </select>
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label class="control-label col-md-4">手机号码：</label>
+                            <div class="col-md-6">
+                                <input data-reg="Phone" id="ContactsPhone" type="number" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="手机号码">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <!--                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
+                    <button type="submit" class="btn btn-success" id="addAccountBtn">新增账号</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--ChangeModal-->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalChangeAccount" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 class="modal-title">修改账号信息</h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                    <form action="" class="form-horizontal" id="changeAccountForm">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">账号：</label>
+                            <div class="col-md-6">
+                                <input id="_UserName" type="text" autocomplete="off" class="form-control tooltips no-focus" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="账号名(建议英文)" readonly>
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">姓名：</label>
+                            <div class="col-md-6">
+                                <input data-reg="noNull" id="_Name" type="text" autocomplete="off" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="姓名">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">性别：</label>
+                            <div class="col-md-6">
+                                <select name="" id="_Sex" class="form-control">
+                                    <option value="0">男</option>
+                                    <option value="1">女</option>
+                                </select>
+                            </div>
+                        </div>
+                      
+                        <div class="form-group">
+                            <label class="control-label col-md-4">手机号码：</label>
+                            <div class="col-md-6">
+                                <input id="_ContactsPhone" type="number" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="手机号码">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <!--                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
+                    <button type="submit" class="btn btn-success" id="changeAccountBtn">修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--DelModal-->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalDelAccount" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p>确定删除所选账号？</p>
+
+                </div>
+                <div class="modal-footer">
+                     <button type="submit" class="btn btn-success" id="DelAccountBtn" data-dismiss="modal">确定</button>
+                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <!--updatePswModal-->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalResetPsw" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 class="modal-title">重设密码</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="resetPswForm">
+                      <div class="form-group">
+                        <label for="recipient-name" class="control-label">密码:</label>
+                        <input data-reg="psw" type="password" class="form-control" id="password_reset">
+                        <input type="text" class="hide">
+                        <p class="help-block"></p>
+                      </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                     <button type="submit" class="btn btn-success" id="resetPswBtn">确定</button>
+                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script type="text/template" id="TplAccountList">
+    <%if(list.length == 0){%>
+    <tr class="noHref">
+        <td colspan="50" class="text-center">暂无记录</td>
+    <tr>
+    <%}else{%>
+    <%for(var i=0;i<list.length; i++){%>
+    <tr>
+        <td class="employeeId" data-id="<%=list[i].employee_id%>">
+            <input type="checkbox" name="DelEmployeeCheck" value="<%=list[i].employee_id%>">
+        </td>
+        <td data-key="account" class="account_id"><a href="/employee_info.html?id=<%=list[i].employee_id%>"><%=list[i].employee_id%></a></td>
+        <td data-key="name" class="name"><%=list[i].name%></td>
+        <td data-key="sex" class="sex" data-sex="<%=list[i].sex%>"><%if(list[i].sex==0){%>男<%}else{%>女<%}%></td>
+        <td data-key="phone" class="phone"><%=list[i].phone%></td>
+        <td data-key="timex" class="timex"><%=list[i].timex%></td>
+        <td>
+            <button class="btn btn-success btn-sm changeAccountBtn" type="button">修改资料</button>
+            <button class="btn btn-success btn-sm updatePsw" type="button">重设密码</button>
+        </td>
+    </tr>
+    <%}%>
+    <%}%>
+    </script>
+
+    {{template "tpl_js.html"}}
+
+    <script src="js/lodash.min.js"></script>
+    <script src="js/myself/global.js"></script>
+    <script src="js/myself/agent_employee.js"></script>
+
+</body>
+
+</html>

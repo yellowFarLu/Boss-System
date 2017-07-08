@@ -1,0 +1,21 @@
+2017/05/07 00:27:20 [I] [asm_amd64.s:2086] http server Running on http://:8080
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|   6.734784ms|   match|[44m GET     [0m /     r:/
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    207.691µs|   match|[44m GET     [0m /css/common.css
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    545.882µs|   match|[44m GET     [0m /css/style.css
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    221.765µs|   match|[44m GET     [0m /css/jquery.toast.min.css
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    379.716µs|   match|[44m GET     [0m /css/style-responsive.css
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    308.507µs|   match|[44m GET     [0m /js/jquery-1.10.2.min.js
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    192.321µs|   match|[44m GET     [0m /js/bootstrap.min.js
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    158.163µs|   match|[44m GET     [0m /js/modernizr.min.js
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|     234.56µs|   match|[44m GET     [0m /js/myself/global.js
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    140.495µs|   match|[44m GET     [0m /js/jquery.toast.min.js
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    214.438µs|   match|[44m GET     [0m /js/myself/login.js
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    532.628µs|   match|[44m GET     [0m /images/login-logo.png
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    370.439µs|   match|[44m GET     [0m /css/jquery-ui-1.10.3.css
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    411.686µs|   match|[44m GET     [0m /css/bootstrap.min.css
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    614.372µs|   match|[44m GET     [0m /css/bootstrap-reset.css
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|     707.69µs|   match|[44m GET     [0m /fonts/css/font-awesome.min.css
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    659.782µs|   match|[44m GET     [0m /images/login-bg.jpg
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    270.443µs|   match|[44m GET     [0m /fonts/fonts/fontawesome-webfont.woff
+2017/05/07 00:27:31 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    141.877µs|   match|[44m GET     [0m /images/bitbug_favicon.ico
+2017/05/07 00:27:33 [D] [server.go:2202] |      127.0.0.1|[42m 200 [0m|    582.383µs|   match|[46m POST    [0m /login   r:/login

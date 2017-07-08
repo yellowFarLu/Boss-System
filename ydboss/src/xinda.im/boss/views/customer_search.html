@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>BOSS系统</title>
+
+    {{template "tpl_css.html"}}
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+    <section>
+        <!-- left side start-->
+        {{template "tpl_menu.html" .}}
+        <!-- left side end-->
+
+        <!-- main content start-->
+        <div class="main-content">
+
+            <!-- header section start-->
+            {{template "tpl_head.html" .user}}
+            <!-- header section end-->
+            
+            <!--body wrapper start-->
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <section class="panel">
+                            <header class="panel-heading">高级搜索</header>
+                            <div class="panel-body">
+                               <div class="">
+                                  <form action="" class="form-horizontal" id="formData">
+                                       <div class="form-group">
+                                            <label class="col-lg-3 control-label col-lg-3 text-right">企业号或者企业名称：</label>
+                                            <div class="col-lg-6 m-bot15">
+                                                <input type="text" class="form-control font-12" placeholder="请输入企业号或者企业名称" id="keyWord">
+                                            </div>
+                                        </div>
+                                       <div class="form-group screen" onselectstart="return false">
+                                            <label class="col-lg-3 control-label col-lg-3 text-right">所属省份：</label>
+                                            <div class="col-lg-6">
+                                                <div class="input-group m-bot15 relative">
+                                                   <div class="screenStage">
+                                                       <div id="provincetagList" class="tagStage"></div>
+                                                       <input type="text" class="form-control font-12 keyInput" placeholder="支持模糊搜索" id="provinceInput">
+                                                   </div>
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-default search-btn" id="provinceSearchAll"><i class="fa fa-search"></i></button>
+                                                    </span>
+                                                    <div class="focusShow absolute" id="provinceList" onselectstart="return false"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       <div class="form-group screen" onselectstart="return false">
+                                            <label class="col-lg-3 control-label col-lg-3 text-right">标签：</label>
+                                            <div class="col-lg-6">
+                                                <div class="input-group m-bot15 relative">
+                                                   <div class="screenStage">
+                                                       <div id="TagtagList" class="tagStage"></div>
+                                                       <input type="text" class="form-control font-12 keyInput" placeholder="支持模糊搜索" id="tagInput">
+                                                   </div>
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-default search-btn" id="tagsSearchAll"><i class="fa fa-search"></i></button>
+                                                    </span>
+                                                    <div class="focusShow absolute" id="tagList" onselectstart="return false"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       <div class="form-group">
+                                            <label class="col-lg-3 control-label col-lg-3 text-right">组织架构数FROM：</label>
+                                            <div class="col-lg-6 m-bot15">
+                                                <input type="number" class="form-control font-12" placeholder="组织架构数从什么开始" id="staffFrom">
+                                            </div>
+                                        </div>
+                                       <div class="form-group">
+                                            <label class="col-lg-3 control-label col-lg-3 text-right">组组架构数TO：</label>
+                                            <div class="col-lg-6 m-bot15">
+                                                <input type="number" class="form-control font-12" placeholder="组织架构数从什么结束" id="staffTo">
+                                            </div>
+                                        </div>
+                                       <div class="form-group">
+                                            <label class="col-lg-3 control-label col-lg-3 text-right">创建时间FROM：</label>
+                                            <div class="col-lg-6 m-bot15">
+                                                <input type="text" class="form-control font-12 default-date-picker" placeholder="从什么开始创建" id="timexFrom">
+                                            </div>
+                                        </div>
+                                       <div class="form-group">
+                                            <label class="col-lg-3 control-label col-lg-3 text-right">创建时间TO：</label>
+                                            <div class="col-lg-6 m-bot15">
+                                                <input type="text" class="form-control font-12 default-date-picker" placeholder="从什么结束创建" id="timexTo">
+                                            </div>
+                                        </div>
+                                       <div class="form-group">
+                                            <label class="col-lg-3 control-label col-lg-3 text-right">最后跟踪时间FROM：</label>
+                                            <div class="col-lg-6 m-bot15">
+                                                <input type="text" class="form-control font-12 default-date-picker" placeholder="从什么开始跟踪" id="followTimeFrom">
+                                            </div>
+                                        </div>
+                                       <div class="form-group">
+                                            <label class="col-lg-3 control-label col-lg-3 text-right">最后跟踪时间TO：</label>
+                                            <div class="col-lg-6 m-bot15">
+                                                <input type="text" class="form-control font-12 default-date-picker" placeholder="从什么结束跟踪" id="followTimeTo">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="text-right col-lg-6 col-lg-offset-3">
+                                                <button class="btn btn-info" type="button" id="clearBtn">清空条件 <i class="fa fa-undo"></i></button>
+                                                <button class="btn btn-primary" type="button" id="queryBtn">执行查询 <i class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                               </div>
+                                <hr class="dashed">
+                                <div class="table-responsive relative">
+                                    <table class="table table-hover table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                            <th hidden="hidden">#</th>
+                                            <th>企业名称</th>
+                                            <th>RTX总机号</th>
+                                            <th>联系人</th>
+                                            <th>联系电话</th>
+                                            <th hidden=true>座机</th> 
+                                            <th hidden=true>邮箱</th>
+                                            <th>上报员工数</th>
+                                            <th>组织架构数</th>
+                                            <th>所属地区</th>
+                                            <th hidden=true>QQ</th>
+                                            <th width="140">
+                                                <span>创建时间</span>
+                                            </th>
+                                            <th width="140">
+                                                <span>最后跟踪时间</span>
+                                                </span>
+                                            </th>
+                                            <th width="300">标签</th>
+                                            <th hidden=true>备注</th>
+<!--                                            <th>操作</th>-->
+                                            <th width="80">企业数据</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="CustomerListBox">
+                                        {{template "tpl_noData.html"}}
+                                        </tbody>
+                                </table>
+                                <div id="loadMask" class="absolute">
+                                    <img src="../images/input-spinner.gif" alt="">
+                                </div>
+                                </div>
+                                <div class="page_info" id="Customer_page">
+                                    <p class="text-muted font-12">共<span class="text-primary">0</span>条记录</p></div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <!--body wrapper end-->
+
+            {{template "tpl_footer.html"}}
+
+        </div>
+        <!-- main content end-->
+    </section>
+    
+    <!-- ProvinceModal -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalProvince" class="modal fade" onselectstart="return false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 class="modal-title">选择省份</h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                    <form action="" class="form-horizontal" id="provinceForm">
+                       <div class="row">
+                        <div class="col-md-12">
+                            <input id="provinceName" type="text" class="form-control" placeholder="输入省份名搜索" >
+                        </div>
+                       </div>
+                       <div class="row">
+                        <div class="col-md-12">
+                            <div id="allProvinceList"></div>
+                        </div>
+                       </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <!--                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
+                    <button type="submit" class="btn btn-success" id="chooseProvinceBtn" data-dismiss="modal">选择</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- TagsModal -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalTags" class="modal fade" onselectstart="return false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 class="modal-title">选择标签</h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                    <form action="" class="form-horizontal" id="tagsForm">
+                       <div class="row">
+                        <div class="col-md-12">
+                            <input id="tagName" type="text" class="form-control" placeholder="输入标签名搜索" >
+                        </div>
+                       </div>
+                       <div class="row">
+                        <div class="col-md-12">
+                            <div id="allTagsList"></div>
+                        </div>
+                       </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <!--                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
+                    <button type="submit" class="btn btn-success" id="chooseTagBtn" data-dismiss="modal">选择</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    
+    <script type="text/template" id="TplCustomerList">
+    <%if(list.length == 0){%>
+    <tr class="noHref">
+        <td colspan="50" class="text-center">暂无记录</td>
+    <tr>
+    <%}else{%>
+    <%for(var i=0;i<list.length; i++){%>
+    <tr>
+        <td class="hide"></td>
+        <td data-key="entName" class="entName"><a href="/<%=link%>.html?id=<%=list[i].customer_id%>"><%=list[i].entName%></a></td>
+        <td data-key="rtx_num" class="buin"><%if(list[i].rxt_num == 0){%><%}else{%><%=list[i].rxt_num%><%}%></td>
+        <td data-key="contacts" class="contacts"><%=list[i].contacts%></td>
+        <td data-key="phone" class="phone"><%=list[i].phone%></td>
+        <td data-key="mobile" class="mobile" hidden=true><%=list[i].mobile%></td>
+        <td data-key="email" hidden=true><span class="label label-success label-mini email"><%=list[i].email%></span></td>
+        <td><%=list[i].staff%></td>
+        <td><%=list[i].emp_count%></td>
+        <td data-key="area">
+            <span class="province"><%=list[i].Province.province_name%></span>(<span class="city"><%=list[i].City.city_name%></span>)
+        </td>
+        <td data-key="qq" class="qq" hidden=true><%=list[i].qq%></td>
+        <td data-key="timex" class="timex"><%=list[i].timex%></td>
+        <td data-key="follow_time" class="follow_time"><%=list[i].last_follow_time%></td>
+        <td data-key="tag" class="tag">
+            <%for(var g=0;g<list[i].Tags.length;g++){%><span data-id="<%=list[i].Tags[g].tag_id%>" class="label label-info"><%=list[i].Tags[g].Name%></span><%}%>
+        </td>
+        <td data-key="remarks" class="remarks" hidden=true><%=list[i].remarks%></td>
+        <td class="hide">
+            <button class="btn btn-success btn-sm changeCustomerBtn" type="button">修改资料</button>
+        </td>
+        <td>
+            <button class="btn btn-success btn-sm popovers" data-trigger="hover" data-placement="left" data-content="有度帐号激活数:<%=list[i].active%></br>昨日总活跃数:<%=list[i].EntYesterdayInfo.total%></br>昨日iOS活跃数:<%=list[i].EntYesterdayInfo.iOS%></br>昨日Android活跃数:<%=list[i].EntYesterdayInfo.android%></br>昨日PC活跃数:<%=list[i].EntYesterdayInfo.pc%>" data-original-title="企业数据">查看数据</button>
+        </td>
+    </tr>
+    <%}%>
+    <%}%>
+    </script>
+
+    {{template "tpl_js.html"}}
+
+    <script src="js/lodash.min.js"></script>
+    <script src="js/myself/global.js"></script>
+    
+    <script src="js/myself/customer_search.js"></script>
+    <script src="js/myself/all_screen.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+{
+    "mainDB": "root:root@tcp(localhost:3306)/emoa_boss?charset=utf8",
+    "logName": "./log/boss.log",
+    "opsdPath": "https://devops.youdu.im", 
+    "backupDB": "root:root@tcp(localhost:3306)/backup_boss?charset=utf8"
+}

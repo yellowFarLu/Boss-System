@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>BOSS系统</title>
+
+    {{template "tpl_css.html"}}
+
+</head>
+
+<body class="sticky-header" id="sale_tem">
+
+    <section>
+        <!-- left side start-->
+        {{template "tpl_menu.html" .}}
+        <!-- left side end-->
+
+        <!-- main content start-->
+        <div class="main-content">
+
+            <!-- header section start-->
+            {{template "tpl_head.html" .user}}
+            <!-- header section end-->
+
+            <!-- page heading end-->
+            <hr>
+            <!--body wrapper start-->
+            <div class="wrapper">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <section class="panel">
+                            <header class="panel-heading">基本信息</header>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-success" data-toggle="modal" type="button" id="returnBtn" onclick="history.go(-1)">返回</button>
+                                        <button class="btn btn-success" data-toggle="modal" type="button" id="editBtn" onclick="opportCtl.EditOnClick(true)">编辑</button>
+                                        <button class="btn btn-success" data-toggle="modal" type="button" id="saveBtn" onclick="opportCtl.EditOnClick(false)" disabled=true>保存</button>
+                                    </div>
+                                </div>
+                                <hr class="dashed">
+                                <form action="" class="form-horizontal" id="updateOpportForm">
+                                    <div class="row">
+                                        <div class="col-md-5 col-md-offset-1">
+                                           <div class="form-group">
+                                                <label class="control-label col-md-4">标题：</label>
+                                                <div class="col-sm-8">
+                                                    <input disabled=true id="o_title" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="总机号">
+                                                    <p class="help-block"></p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4">所属客户：</label>
+                                                <div class="col-sm-8">
+                                                    <input id="o_customer" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" data-original-title="客户名称" readonly>
+                                                    <p class="help-block"></p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4">销售额（万）：</label>
+                                                <div class="col-sm-8">
+                                                    <input disabled=true id="sale" type="number" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="联系人">
+                                                    <p class="help-block"></p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4">商机状态：</label>
+                                                <div class="col-sm-8">
+                                                    <select disabled=true name="" id="Stage" class="form-control">
+                                                        <option value="0">初步交流（10%）</option>
+                                                        <option value="1">需求沟通（30%）</option>
+                                                        <option value="2">商务沟通（50%）</option>
+                                                        <option value="3">签约交款（100%）</option>
+                                                        <option value="4">商务失败（0%）</option>
+                                                    </select>
+                                                    <p class="help-block"></p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4">预计签约时间：</label>
+                                                <div class="col-sm-8">
+                                                    <input id="estimate_time" type="text" class="form-control" readonly>
+                                                    <p class="help-block"></p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4">真实签约时间：</label>
+                                                <div class="col-sm-8">
+                                                    <input disabled=true id="time" type="text" class="form-control tooltips default-date-picker" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="真实签约时间">
+                                                    <p class="help-block"></p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4">内容：</label>
+                                                <div class="col-sm-8">
+                                                    <textarea disabled=true id="Content" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" data-original-title="内容" rows="5" style="resize:none"></textarea>
+                                                    <p class="help-block"></p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4">标签：</label>
+                                                <div class="col-sm-8">
+                                                    <div id="_updateTags"></div>
+                                                    <div id="_tagAll" onselectstart="return false" class="hide">
+                                                        <button class="btn btn-success tagAddBtn" type="button"><i class="fa fa-plus"></i> 添加标签</button>
+                                                        <div class="col-sm-12 tagBox tagsinput"><i class="closeTagBox"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="dashed">
+                                        <textarea id="comment_area" class="form-control" rows="3" cols="" placeholder="添加备注信息" style="resize:none"></textarea>
+                                        <p></p>
+                                        <button class="btn btn-primary addCommentBtn" data-toggle="modal" type="button" onclick="opportCtl.addCommentBtnHtml()">添加备注</button>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="timeline">
+                            <article class="timeline-item alt">
+                                <div class="text-right beforeCenter">
+                                    <div class="time-show first">
+                                        <a href="javascript:;" class="btn btn-primary recordBtn">点击只查看备注记录</a>
+                                    </div>
+                                </div>
+                            </article>
+                            <div id="CommentListBox"></div>
+                            <article class="timeline-item alt">
+                                <div class="text-right beforeCenter">
+                                    <div class="time-show last">
+                                        <a href="javascript:;" class="btn btn-primary lookMore">点击查看更多</a>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--body wrapper end-->
+
+            {{template "tpl_footer.html"}}
+
+        </div>
+        <!-- main content end-->
+    </section>
+    
+    
+    <script type="text/template" id="TplCommentlist">
+        <%if(Comments.length==0){%>
+            <article class="timeline-item comments">
+                <div class="timeline-desk">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <span class="arrow-alt"></span>
+                            <span class="timeline-icon"></span>
+                            <p class="font-12 text-center">暂无更多记录 </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        <%}else{%>
+            <%for(var i =0;i<Comments.length;i++){%>
+                <article class="timeline-item comments">
+                    <div class="timeline-desk">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="comment_id hide"><%=Comments[i].comment_id%></div>
+                                <h1 class=""><%=Comments[i].timex%></h1>
+                                <%if(Comments[i].type==0){%><button class="btn btn-default btn-sm updateCommentBtn">修改备注</button><button class="btn btn-default btn-sm saveCommentBtn">保存</button>
+                                <textarea readonly type="text" class="form-control content"  rows="4" style="resize:none" value=""><%=Comments[i].text%></textarea>
+                                <%}else{%>
+                                <p class="font-12"><b><%=Comments[i].comments.action%></b></br><%=Comments[i].text%> </p><%}%>
+                                <p class="userGo"><a href="javascript:;"><i class="fa fa-user"></i> <%=Comments[i].committer%></a></p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            <%}%>
+        <%}%>
+    </script>
+        
+    
+    <script type="text/template" id="TplTagList">
+    <%for(var i =0;i<Tags.length;i++){%>
+    <span data-id="<%=Tags[i].tag_id%>" class="label label-info"><%=Tags[i].Name%></span>
+    <%}%>
+    </script>
+
+    {{template "tpl_js.html"}}
+
+    <script src="js/lodash.min.js"></script>
+    <script src="js/myself/global.js"></script>
+    <script src="js/myself/opport_info.js?_=2017.05.09"></script>
+
+
+</body>
+
+</html>

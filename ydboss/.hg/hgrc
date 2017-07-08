@@ -1,0 +1,12 @@
+[auth]
+root.prefix=https://ph.cindacode.com/
+root.username=yellowfar.huang
+root.password=29876781F
+
+[ui]
+# name and email (local to this repository, optional), e.g.
+# username = Jane Doe <jdoe@example.com>
+
+
+[paths]
+default = https://ph.cindacode.com/diffusion/YDBOSS/ydboss/

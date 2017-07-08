@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>BOSS系统</title>
+    
+    {{template "tpl_css.html"}}
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+    <section>
+        <!-- left side start-->
+        {{template "tpl_menu.html" .}}
+        <!-- left side end-->
+
+        <!-- main content start-->
+        <div class="main-content">
+
+            <!-- header section start-->
+            {{template "tpl_head.html" .user}}
+            <!-- header section end-->
+            
+            <!--body wrapper start-->
+            <div class="wrapper">
+                <div class="row">
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <section class="panel">
+                            <header class="panel-heading">渠道列表</header>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <button class="btn btn-success" data-toggle="modal" id="addAgentNow">新增渠道</button>
+                                        <button class="btn btn-success" data-toggle="modal" id="delAgentNow">删除渠道</button>
+                                    </div>
+                                    <div class="col-sm-3 searchLine">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="keyWord" placeholder="渠道名">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default search-btn"id="searchAgentBtn"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="dashed">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th width="35">#</th>
+                                                <th>渠道名称</th>
+                                                <th>联系人</th>
+                                                <th>联系电话</th>
+                                                <th>邮箱</th>
+                                                <th>管理员账号</th>
+                                                <th class="orderByBtn on" width="140" data-key="timex">
+                                                    <span>创建时间</span>
+                                                    <span class="upBox pull-right">
+                                                        <i class="fa fa-caret-up"></i>
+                                                        <i class="fa fa-caret-down on"></i>
+                                                    </span>
+                                                </th>
+                                                <th>备注</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="agentListBox">
+                                        {{template "tpl_noData.html"}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="page_info" id="agent_page"></div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <!--body wrapper end-->
+
+            {{template "tpl_footer.html"}}
+
+
+        </div>
+        <!-- main content end-->
+    </section>
+
+    <!-- AddAgentModal -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalAddAgent" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 class="modal-title">新增渠道</h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                    <form action="" class="form-horizontal" id="addAgentForm">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">渠道名称：</label>
+                            <div class="col-md-6">
+                                <input data-reg="noNull" id="AgentName" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="渠道名称">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">联系人：</label>
+                            <div class="col-md-6">
+                                <input data-reg="noNull" id="Contacts" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="联系人">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">邮箱：</label>
+                            <div class="col-md-6">
+                                <input data-reg="email" id="ContactsMail" type="email" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="邮箱">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">手机号码：</label>
+                            <div class="col-md-6">
+                                <input data-reg="Phone" id="ContactsPhone" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="手机号码">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">管理员邮箱账号：</label>
+                            <div class="col-md-6">
+                                <input data-reg="noNull,email" id="AccountId" autocomplete="off" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="渠道管理员邮箱账号">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">管理员密码：</label>
+                            <div class="col-md-6">
+                                <input data-reg="noNull" id="Password" autocomplete="off" type="password" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="管理员账号密码">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">性别：</label>
+                            <div class="col-md-6">
+                                <select name="" id="Sex" class="form-control">
+                                    <option value="0">男</option>
+                                    <option value="1">女</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">备注：</label>
+                            <div class="col-md-6">
+                                <input type="text" id="Note" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="备注信息">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <!--                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
+                    <button type="submit" class="btn btn-success" id="addAgentBtn">新增渠道</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalDelAgent" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p>确定删除吗？</p>
+
+                </div>
+                <div class="modal-footer">
+                     <button type="submit" class="btn btn-success" id="DelAgentBtn" data-dismiss="modal">确定</button>
+                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ChangeAgentModal -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalChangeAgent" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 class="modal-title">修改渠道</h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                    <form action="" class="form-horizontal" id="updateAgentForm">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">渠道名称：</label>
+                            <div class="col-md-6">
+                                <input data-reg="noNull" id="_AgentName" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="渠道名称">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">联系人：</label>
+                            <div class="col-md-6">
+                                <input data-reg="noNull" id="_Contacts" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="联系人">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">邮箱：</label>
+                            <div class="col-md-6">
+                                <input data-reg="email" id="_ContactsMail" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="邮箱">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">手机号码：</label>
+                            <div class="col-md-6">
+                                <input id="_ContactsPhone" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="手机号码">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group hide">
+                            <label class="control-label col-md-4">隐藏agentId：</label>
+                            <div class="col-md-6">
+                               <input data-reg="noNull" type="text" id="_AgentId" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">备注：</label>
+                            <div class="col-md-6">
+                                <input type="text" id="_Note" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="备注信息">
+                            </div>
+                        </div>
+                        
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success" id="changeAgentBtn">修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/template" id="TplAgentList">
+    <%if(list.length == 0){%>
+    <tr class="noHref">
+        <td colspan="50" class="text-center">暂无记录</td>
+    <tr>
+    <%}else{%>
+    <%for(var i=0;i<list.length; i++){%>
+    <tr class="noHref">
+        <td class="AgentId" data-id="<%=list[i].agent_id%>">
+            <input type="checkbox" name="DelAgentCheck" value="<%=list[i].agent_id%>">
+        </td>
+        <td class="AgentName" data-key="entName"><%=list[i].agent_name%></td>
+        <td class="Contacts" data-key="contacts"><%=list[i].contacts%></td>
+        <td class="ContactsPhone" data-key="phone"><%=list[i].contacts_phone%></td>
+        <td data-key="email"><span class="label label-success label-mini ContactsMail"><%=list[i].contacts_mail%></span></td>
+        <th data-key="account_id"><span class="label label-success label-mini aco"><%=list[i].account.employee_id%></span></th>
+        <td><%=list[i].Timex%></td>
+        <td data-key="note">
+            <span class="Note"><%=list[i].note%></span>
+        </td>
+        <td>
+            <button class="btn btn-success btn-sm changeAgentBtn" type="button">修改资料</button>
+        </td>
+    </tr>
+    <%}%>
+    <%}%>
+    </script>
+    
+    <script type="text/template" id="TplProvinceList">
+    <option value="">请选择省份</option>
+    <%for(var i =0;i<list.length;i++){%>
+    <option value="<%=list[i].province_id%>"><%=list[i].province_name%></option>
+    <%}%>
+    </script>
+    
+    <script type="text/template" id="TplCityList">
+    <option value="">请选择城市</option>
+    <%for(var i =0;i<list.length;i++){%>
+    <option value="<%=list[i].city_id%>"><%=list[i].city_name%></option>
+    <%}%>
+    </script>
+    
+    {{template "tpl_js.html"}}
+
+    <script src="js/lodash.min.js"></script>
+    <script src="js/myself/global.js"></script>
+    <script src="js/myself/agent.js"></script>
+</body>
+
+</html>

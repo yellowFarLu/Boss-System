@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>BOSS系统</title>
+
+    {{template "tpl_css.html"}}
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+    <section>
+        <!-- left side start-->
+        {{template "tpl_menu.html" .}}
+        <!-- left side end-->
+
+        <!-- main content start-->
+        <div class="main-content">
+
+            <!-- header section start-->
+            {{template "tpl_head.html" .user}}
+            <!-- header section end-->
+            
+            <!--body wrapper start-->
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <section class="panel">
+                            <header class="panel-heading">客户列表
+                                <span class="tools pull-right">
+                                <button class="btn btn-primary" onclick="location.href='./sale_customer_search.html'">高级搜索 <i class="fa fa-search"></i></button>
+                                 </span>
+                             </header>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <div class="dropdown">
+                                          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            客户分类
+                                            <span class="caret"></span>
+                                          </button>
+                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                            <li><a href="A">A类客户</a></li>
+                                            <li><a href="B">B类客户</a></li>
+                                            <li><a href="C">C类客户</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="D">D类客户</a></li>
+                                          </ul>
+                                        </div>
+                                        <button class="btn btn-success" data-toggle="modal" type="button" id="addCustomerNow">新增客户</button>
+                                        <button class="btn btn-success" data-toggle="modal" type="button" id="delCustomerNow">删除客户</button>
+                                        <button class="btn btn-success" data-toggle="modal" type="button" id="excLoadBtn">EXCEL导入客户</button>
+                                        <a class="btn btn-success" href="/download_excel_model">下载EXCEL模板</a>
+                                        <form action="" method="post" id="excelForm" enctype="multipart/form-data">
+                                            <input type="file" class="hide" id="excelFile">
+                                        </form>
+                                        
+                                    </div>
+                                    <div class="col-sm-3 searchLine">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="keyWord" placeholder="企业名称或企业号">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default search-btn"id="searchCustomerBtn"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="dashed">
+
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                            <th width="35">#</th>
+                                            <th width="200">企业名称</th>
+                                            <th>总机号</th>
+                                            <th width="80">联系人</th>
+                                            <th>手机</th>
+                                            <th width="120">座机</th> 
+                                            <th hidden=true>邮箱</th>
+                                            <th width="80">上报员工数</th>
+                                            <th width="80">组织架构数</th>
+                                            <th>地区</th>
+                                            <th hidden=true>QQ</th>
+                                            <th class="orderByBtn on" width="140" data-key="timex">
+                                                <span>创建时间</span>
+                                                <span class="upBox pull-right">
+                                                    <i class="fa fa-caret-up"></i>
+                                                    <i class="fa fa-caret-down on"></i>
+                                                </span>
+                                            </th>
+                                            <th class="orderByBtn" width="160" data-key="follow_time">
+                                                <span>最后跟踪时间</span>
+                                                <span class="upBox pull-right">
+                                                    <i class="fa fa-caret-up"></i>
+                                                    <i class="fa fa-caret-down"></i>
+                                                </span>
+                                            </th>
+                                            <th width="300">标签</th>
+                                            <th hidden=true>备注</th>
+<!--                                            <th>操作</th>-->
+                                            <th width="80">企业数据</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="CustomerListBox">
+                                        {{template "tpl_noData.html"}}
+                                        </tbody>
+                                </table>
+                                </div>
+                                <div class="page_info" id="Customer_page"></div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <!--body wrapper end-->
+
+            {{template "tpl_footer.html"}}
+
+        </div>
+        <!-- main content end-->
+    </section>
+
+    <!-- AddCustomerModal -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalAddCustomer" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 class="modal-title">新增客户</h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                    <form action="" class="form-horizontal" id="addCustomerForm">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">总机号：</label>
+                            <div class="col-md-6">
+                                <input data-reg="RTXNumber" id="Buin" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="总机号">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">客户名称：</label>
+                            <div class="col-md-6">
+                                <input data-reg="noNull" id="EntName" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="客户名称">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">联系人：</label>
+                            <div class="col-md-6">
+                                <input id="Contacts" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="联系人">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">邮箱：</label>
+                            <div class="col-md-6">
+                                <input data-reg="email" id="ContactsMail" type="email" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="邮箱">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">手机号码：</label>
+                            <div class="col-md-6">
+                                <input data-reg="Phone" id="ContactsPhone" type="number" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="手机号码">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">座机：</label>
+                            <div class="col-md-6">
+                                <input id="Mobile" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="座机">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">QQ：</label>
+                            <div class="col-md-6">
+                                <input id="QQ" type="number" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="QQ号码">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">省份：</label>
+                            <div class="col-md-6">
+                               <fieldset>
+                                   <select class="form-control m-bot15" name="P1" id="province"></select><select class="form-control" name="C1" id="city">
+                                       <option value="">请选择城市</option>
+                                   </select>
+                               </fieldset>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">备注：</label>
+                            <div class="col-md-6">
+                                <input id="Remarks" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="备注">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                           <div class="col-md-6 col-sm-offset-4" id="_addTags"></div>
+                            <div class="col-md-6 col-sm-offset-4" id="tagAll" onselectstart="return false">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <!--                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
+                    <button type="submit" class="btn btn-success" id="addCustomerBtn">新增客户</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ChangeCustomerModal -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalChangeCustomer" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 class="modal-title">修改客户</h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                    <form action="" class="form-horizontal" id="updateCustomerForm">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">总机号：</label>
+                            <div class="col-md-6">
+                                <input data-reg="RTXNumber" id="_Buin" type="number" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="总机号">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">客户名称：</label>
+                            <div class="col-md-6">
+                                <input data-reg="noNull" id="_EntName" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="客户名称">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">联系人：</label>
+                            <div class="col-md-6">
+                                <input id="_Contacts" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="联系人">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">邮箱：</label>
+                            <div class="col-md-6">
+                                <input data-reg="email" id="_ContactsMail" type="email" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="邮箱">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">手机号码：</label>
+                            <div class="col-md-6">
+                                <input data-reg="Phone" id="_ContactsPhone" type="number" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="手机号码">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">座机：</label>
+                            <div class="col-md-6">
+                                <input id="_Mobile" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="座机">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">QQ：</label>
+                            <div class="col-md-6">
+                                <input id="_QQ" type="number" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="QQ号码">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">省份：</label>
+                            <div class="col-md-6">
+                               <fieldset>
+                                   <select class="form-control m-bot15" name="P2" id="_province"></select>
+                                   <select class="form-control" name="C2" id="_city">
+                                       <option value="">请选择城市</option>
+                                   </select>
+                               </fieldset>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">备注：</label>
+                            <div class="col-md-6">
+                                <input id="_Remarks" type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="" data-original-title="备注">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>                                
+                        <div class="form-group">
+                            <label class="control-label col-md-4">最后跟踪时间</label>
+                            <div class="col-md-6">
+                                <input id="_follow_time" readonly class="form-control"  size="16" type="text" value="" data-date-format="yyyy-mm-dd"/>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>                                
+                        <div class="form-group">
+                            <label class="control-label col-md-4">标签：</label>
+                            <div class="col-md-6">
+                                <div id="_updateTags"></div>
+                                <div id="_tagAll" onselectstart="return false"></div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <!--                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
+                    <button type="submit" class="btn btn-success" id="updateCustomerBtn">修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--DelModal-->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalDelCustomer" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p>确定删除吗？</p>
+
+                </div>
+                <div class="modal-footer">
+                     <button type="submit" class="btn btn-success" id="DelCustomerBtn" data-dismiss="modal">确定</button>
+                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mask">
+        <img src="../images/input-spinner.gif" alt=""> 等待中...
+    </div>
+    
+    <script type="text/template" id="TplCustomerList">
+    <%if(list.length == 0){%>
+    <tr class="noHref">
+        <td colspan="50" class="text-center">暂无记录</td>
+    <tr>
+    <%}else{%>
+    <%for(var i=0;i<list.length; i++){%>
+    <tr>
+        <td class="customerId" data-id="<%=list[i].customer_id%>">
+            <input type="checkbox" name="DelCustomerCheck" value="<%=list[i].customer_id%>">
+        </td>
+        <td data-key="entName" class="entName"><a href="/get_emp_customer_detail.html?id=<%=list[i].customer_id%>"><%=list[i].entName%></a></td>
+        <td data-key="rtx_num" class="buin"><%if(list[i].rxt_num == 0){%><%}else{%><%=list[i].rxt_num%><%}%></td>
+        <td data-key="contacts" class="contacts"><%=list[i].contacts%></td>
+        <td data-key="phone" class="phone"><%=list[i].phone%></td>
+        <td data-key="mobile" class="mobile"><%=list[i].mobile%></td>
+        <td data-key="email" hidden=true><span class="label label-success label-mini email"><%=list[i].email%></span></td>
+        <td><%=list[i].staff%></td>
+        <td><%=list[i].emp_count%></td>
+        <td data-key="area">
+            <span class="province"><%=list[i].Province.province_name%></span>(<span class="city"><%=list[i].City.city_name%></span>)
+        </td>
+        <td data-key="qq" class="qq" hidden=true><%=list[i].qq%></td>
+        <td data-key="timex" class="timex"><%=list[i].timex%></td>
+        <td data-key="follow_time" class="follow_time"><%=list[i].last_follow_time%></td>
+        <td data-key="tag" class="tag">
+            <%for(var g=0;g<list[i].Tags.length;g++){%><span data-id="<%=list[i].Tags[g].tag_id%>" class="label label-info"><%=list[i].Tags[g].Name%></span><%}%>
+        </td>
+        <td data-key="remarks" class="remarks" hidden=true><%=list[i].remarks%></td>
+        <td class="hide">
+            <button class="btn btn-success btn-sm changeCustomerBtn" type="button">修改资料</button>
+        </td>
+        <td>
+            <button class="btn btn-success btn-sm popovers" data-trigger="hover" data-placement="left" data-content="有度帐号激活数:<%=list[i].active%></br>昨日总活跃数:<%=list[i].EntYesterdayInfo.total%></br>昨日iOS活跃数:<%=list[i].EntYesterdayInfo.iOS%></br>昨日Android活跃数:<%=list[i].EntYesterdayInfo.android%></br>昨日PC活跃数:<%=list[i].EntYesterdayInfo.pc%>" data-original-title="企业数据">查看数据</button>
+        </td>
+    </tr>
+    <%}%>
+    <%}%>
+    </script>
+    
+    <script type="text/template" id="TplAgentList">
+    <%for(var i =0;i<list.length;i++){%>
+    <option value="<%=list[i].employee_id%>"><%=list[i].name%></option>
+    <%}%>
+    </script>
+    
+    <script type="text/template" id="TplProvinceList">
+    <option value="">请选择省份</option>
+    <%for(var i =0;i<list.length;i++){%>
+    <option value="<%=list[i].province_id%>"><%=list[i].province_name%></option>
+    <%}%>
+    </script>
+    
+    <script type="text/template" id="TplCityList">
+    <option value="">请选择城市</option>
+    <%for(var i =0;i<list.length;i++){%>
+    <option value="<%=list[i].city_id%>"><%=list[i].city_name%></option>
+    <%}%>
+    </script>
+
+    {{template "tpl_js.html"}}
+
+    <script src="js/lodash.min.js"></script>
+    <script src="js/myself/global.js"></script>
+    
+    <script src="js/myself/sale_customer.js?_=2017.05.05"></script>
+
+</body>
+
+</html>
